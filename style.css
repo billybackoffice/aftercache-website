@@ -17,3 +17,28 @@
 .contact{padding:120px 4vw;display:grid;grid-template-columns:1fr 1fr;gap:30px}.contact h2{font-size:clamp(50px,8vw,120px);line-height:.88;letter-spacing:-.06em;margin:28px 0 0}.contact-link{align-self:end;justify-self:end;font:11px "DM Mono",monospace;border-bottom:1px solid var(--ink);padding-bottom:10px}
 footer{border-top:1px solid var(--line);padding:25px 4vw;display:flex;justify-content:space-between;font:10px "DM Mono",monospace;color:var(--muted);text-transform:uppercase}
 @media(max-width:700px){.nav{height:64px}.links{display:none}.menu{display:block}.nav.open .links{display:flex;position:absolute;top:64px;left:0;right:0;background:var(--bg);padding:25px 4vw;flex-direction:column;gap:18px;border-bottom:1px solid var(--line)}.hero{min-height:calc(100svh - 64px);padding-top:11vw}.hero h1{font-size:23vw}.release-grid{grid-template-columns:1fr}.section{padding:75px 4vw}.about,.contact{grid-template-columns:1fr;padding:80px 4vw}.contact-link{justify-self:start;margin-top:40px}footer{gap:12px;flex-wrap:wrap}}
+
+/* ---- Coming soon ---- */
+body.coming-soon{background:#0b0b0a}
+body.coming-soon .nav{border-bottom:1px solid rgba(233,231,225,.14);background:transparent;backdrop-filter:none;position:absolute;top:0;left:0;right:0;z-index:6}
+body.coming-soon .wordmark{color:#e9e7e1}
+.nav-right{display:flex;align-items:center;gap:32px}
+.social{display:flex;gap:22px;font:11px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em}
+.social a{color:#e9e7e1;opacity:.55}
+.social a:hover{opacity:1}
+.nav-mail{font:11px "DM Mono",monospace;letter-spacing:.04em;color:#e9e7e1;opacity:.7;border-bottom:1px solid rgba(233,231,225,.4);padding-bottom:6px}
+.nav-mail:hover{opacity:1}
+.cs-hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.cs-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.cs-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,3,.92) 0%,rgba(6,4,3,.45) 38%,rgba(6,4,3,0) 62%)}
+.cs-content{position:relative;z-index:2;padding:0 4vw 8vw;color:#f4ede4;max-width:900px}
+.cs-tag{font:11px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;color:#e8c9a8;margin-bottom:18px}
+.cs-content h1{font-size:clamp(56px,11vw,140px);line-height:.9;letter-spacing:-.04em;font-weight:600;margin:0 0 20px}
+.cs-copy{font-size:clamp(15px,1.6vw,19px);line-height:1.45;color:rgba(244,237,228,.72);max-width:420px;margin:0}
+footer{background:#0b0b0a;color:rgba(233,231,225,.55);border-top:1px solid rgba(233,231,225,.14)}
+@media(max-width:700px){
+  body.coming-soon .nav{height:auto;flex-direction:column;align-items:flex-start;gap:14px;padding:18px 5vw}
+  .nav-right{flex-direction:column;align-items:flex-start;gap:14px}
+  .social{gap:18px}
+  .cs-content{padding:0 5vw 14vw}
+}
