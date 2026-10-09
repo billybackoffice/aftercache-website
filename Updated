@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AFTERCACHE — Mortal Coil: Autonoetic</title>
+  <meta name="description" content="Mortal Coil: Autonoetic — new EP by Billy Channels. Out now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f4ede4;
+      --muted: rgba(244, 237, 228, 0.65);
+      --ink: #0b0b0a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #0b0b0a;
+      color: var(--cream);
+      font-family: "DM Mono", monospace;
+    }
+
+    .stage {
+      position: relative;
+      height: 100svh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Background image */
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      z-index: 0;
+    }
+
+    /* Soft dark gradient so text stays readable */
+    .scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(6, 4, 3, 0.92) 0%,
+        rgba(6, 4, 3, 0.55) 35%,
+        rgba(6, 4, 3, 0.25) 60%,
+        rgba(6, 4, 3, 0.15) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Logo – top left, blended */
+    .logo {
+      position: absolute;
+      top: max(18px, env(safe-area-inset-top));
+      left: max(18px, env(safe-area-inset-left));
+      z-index: 10;
+      width: clamp(48px, 7vw, 72px);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+      background: rgba(242, 234, 217, 0.92);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.3s forwards;
+    }
+    .logo img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5vw calc(32px + env(safe-area-inset-bottom));
+      max-width: 720px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    h1 {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: clamp(42px, 9vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.65s forwards;
+    }
+
+    .subtitle {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: var(--muted);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.95s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 22px;
+      font-size: 12px;
+      font-family: "DM Mono", monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--cream);
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(244, 237, 228, 0.35);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cream);
+      background: rgba(244, 237, 228, 0.08);
+    }
+
+    .socials {
+      display: flex;
+      gap: 22px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.1s forwards;
+    }
+    .socials a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .socials a:hover {
+      color: var(--cream);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      .content {
+        padding-bottom: calc(28px + env(safe-area-inset-bottom));
+      }
+      .actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .socials {
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <!-- Background image – make sure bg.jpg is in the same folder -->
+    <img class="bg" src="bg.jpg" alt="" aria-hidden="true">
+    <div class="scrim"></div>
+
+    <!-- Logo (top-left, blended) -->
+    <div class="logo">
+      <!-- Using the existing cover.jpg as logo for now.
+           You can replace this with your preferred logo file later. -->
+      <img src="cover.jpg" alt="AFTERCACHE">
+    </div>
+
+    <div class="content">
+      <div class="tag">AC / 001 · Released 7 Oct 2026</div>
+
+      <h1>Mortal Coil:<br>Autonoetic</h1>
+
+      <p class="subtitle">
+        New EP by Billy Channels · Digital download
+      </p>
+
+      <div class="actions">
+        <!-- Bandcamp button – replace the href once you upload the EP -->
+        <a class="btn btn-primary" href="https://bandcamp.com" target="_blank" rel="noopener">
+          Buy EP — $10
+        </a>
+
+        <a class="btn btn-ghost" href="https://m.soundcloud.com/billychannels/sets/mortal-coil-autonoetic" target="_blank" rel="noopener">
+          Listen on SoundCloud
+        </a>
+      </div>
+
+      <nav class="socials">
+        <a href="https://instagram.com/billychannels" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com/billychannels" target="_blank" rel="noopener">X</a>
+        <a href="https://tiktok.com/@billychannels" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://youtube.com/billychannelscache" target="_blank" rel="noopener">YouTube</a>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>
